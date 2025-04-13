@@ -1,0 +1,65 @@
+name: ci
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    branches: [master]
+
+jobs:
+  build-test-v0:
+    name: Build & test deno
+    strategy:
+      matrix:
+        os:
+          - windows-latest
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set git config
+        continue-on-error: false
+        run: |
+          git config --system core.autocrlf false
+          git config --system core.eol lf
+
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: deno install
+        continue-on-error: false
+        run: |
+          cd bs
+          deno fmt --check
+
+      - name: deno fmt
+        continue-on-error: false
+        run: |
+          cd bs
+          deno run fmt
+
+      - name: deno lint
+        continue-on-error: false
+        run: |
+          cd bs
+          deno run lint
+
+      - name: deno test
+        continue-on-error: false
+        run: |
+          cd bs
+          deno run test
+
+  finish:
+    name: Finish
+    needs: [build-test-v0]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Done..."

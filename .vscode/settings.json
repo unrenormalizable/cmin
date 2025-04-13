@@ -1,0 +1,9 @@
+{
+  "editor.formatOnPaste": true, // required
+  "editor.formatOnType": false, // required
+  "editor.formatOnSave": true, // optional
+  "editor.formatOnSaveMode": "file", // required to format on save
+  "deno.enable": true,
+  "files.eol": "\n", // optional but recommended
+  "files.autoSave": "onFocusChange"
+}

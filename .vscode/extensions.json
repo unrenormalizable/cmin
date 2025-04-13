@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "oderwat.indent-rainbow",
+    "christian-kohler.path-intellisense",
+    "denoland.vscode-deno",
+    "igochkov.vscode-ebnf"
+  ]
+}

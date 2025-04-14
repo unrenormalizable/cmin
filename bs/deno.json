@@ -13,7 +13,7 @@
     "useTabs": false,
     "lineWidth": 120,
     "indentWidth": 2,
-    "semiColons": true,
+    "semiColons": false,
     "singleQuote": true,
     "proseWrap": "preserve",
     "include": ["src/"],

@@ -19,12 +19,6 @@ jobs:
           - ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Set git config
-        continue-on-error: false
-        run: |
-          git config --system core.autocrlf false
-          git config --system core.eol lf
-
       - name: Checkout sources
         uses: actions/checkout@v2
 

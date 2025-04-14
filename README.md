@@ -17,12 +17,14 @@ to build a compiler that is sufficiently powerful compiles itself.
   - compile to text LLVM IR
 - using bootstrap to get working C= compiler
 - add further features & language enhancements
-  - built in smart pointer 
+  - built in smart pointer
+  - remove null: built in option  
   - built in unit testing
   - multiple source files
 
 ## development principles
 
+- incremental, iterative, vertical sliced development
 - clean room implementation
   - **not allowed**: referring to any existing code. 
   - **allowed**: tutorials / discussions on the web that is not code.
@@ -45,3 +47,4 @@ to build a compiler that is sufficiently powerful compiles itself.
 - [curated list of awesome resources](https://github.com/aalhour/awesome-compilers)
 - [LLVM](https://mukulrathi.com/create-your-own-programming-language/llvm-ir-cpp-api-tutorial/)
 - [jack crenshaw: let's build a compiler](https://xmonader.github.io/letsbuildacompiler-pretty/)
+- [compiler explorer](https://godbolt.org/)

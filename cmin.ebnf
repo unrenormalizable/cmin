@@ -1,0 +1,44 @@
+(* formatter / editor: https://matthijsgroen.github.io/ebnf2railroad/try-yourself.html *)
+program = { function };
+
+function = "fn", identifier, "(", [ parameter_list ], ")", ":", type, "{", { statement }, "}";
+parameter_list = parameter, { ",", parameter };
+parameter = identifier, ":", type;
+
+type = "i32" | "f32";
+
+statement = variable_declaration
+    | assignment
+    | return_statement
+    | expression_statement;
+
+variable_declaration = "var", identifier, ":", type, [ "=", expression ], ";";
+assignment = identifier, "=", expression, ";";
+return_statement = "return", expression, ";";
+expression_statement = expression, ";";
+
+expression = term, { "+", term };
+term = factor, { "*", factor };
+factor = identifier
+    | number
+    | "(", expression, ")"
+    | function_call;
+
+function_call = identifier, "(", [ argument_list ], ")";
+argument_list = expression, { ",", expression };
+
+identifier = letter, { letter | digit | "_" };
+number = digit, { digit }, [ ".", digit, { digit } ];
+
+letter = "A" | "B" | "C" | "D" | "E" | "F" | "G"
+    | "H" | "I" | "J" | "K" | "L" | "M" | "N"
+    | "O" | "P" | "Q" | "R" | "S" | "T" | "U"
+    | "V" | "W" | "X" | "Y" | "Z" | "a" | "b"
+    | "c" | "d" | "e" | "f" | "g" | "h" | "i"
+    | "j" | "k" | "l" | "m" | "n" | "o" | "p"
+    | "q" | "r" | "s" | "t" | "u" | "v" | "w"
+    | "x" | "y" | "z" ;
+
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+whitespace = " " | "\t" | "\n" | "\r" ;

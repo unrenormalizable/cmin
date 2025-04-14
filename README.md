@@ -40,7 +40,7 @@ to build a compiler that is sufficiently powerful compiles itself.
 
 ## specs
 
-- refer [.\cmin.ebnf]
+- refer [C= definition](.\def\cmin.ebnf)
 
 ## References
 
@@ -48,3 +48,4 @@ to build a compiler that is sufficiently powerful compiles itself.
 - [LLVM](https://mukulrathi.com/create-your-own-programming-language/llvm-ir-cpp-api-tutorial/)
 - [jack crenshaw: let's build a compiler](https://xmonader.github.io/letsbuildacompiler-pretty/)
 - [compiler explorer](https://godbolt.org/)
+- [flex / bison tutorial](https://www.capsl.udel.edu/courses/cpeg421/2012/slides/Tutorial-Flex_Bison.pdf)

@@ -27,12 +27,6 @@ jobs:
         with:
           deno-version: v2.x
 
-      - name: deno install
-        continue-on-error: false
-        run: |
-          cd bs
-          deno fmt --check
-
       - name: deno fmt
         continue-on-error: false
         run: |

@@ -38,14 +38,10 @@ function isKeyword(str) {
 }
 
 function scan(text, state) {
-  // EOF token.
-  if (getCurrChar(text, state) === null) {
-    return { token: { id: TOK_EOF, value: null, location: state }, state }
-  }
+  state = { ...state }
 
   // WHITESPACE token.
-  if (isWhitespace(getCurrChar(text, state))) {
-    const location = { ...state }
+  while (isWhitespace(getCurrChar(text, state))) {
     while (true) {
       const currChar = getCurrChar(text, state)
       const nextChar = getNextChar(text, state)
@@ -72,8 +68,11 @@ function scan(text, state) {
 
       break
     }
+  }
 
-    return { token: { id: TOK_WHITESPACE, value: null, location }, state }
+  // EOF token.
+  if (getCurrChar(text, state) === null) {
+    return { token: { id: TOK_EOF, value: null, location: state }, state }
   }
 
   // KEYWORD or IDENTIFIER token.
@@ -114,7 +113,51 @@ export function scanAll(text) {
   return tokens
 }
 
+export const AST_NODE_PROGRAM = 0
+export const AST_NODE_FUNCTION = 0
+
+function parseFunction(tokens, state) {
+  state = { ...state }
+
+  state.pos += 9
+  return { ast: { id: AST_NODE_FUNCTION, name: 'main', statements: [] }, state, errors: [] }
+}
+
+function parseProgram(tokens, state) {
+  state = { ...state }
+  const errors = []
+  const ast = { id: AST_NODE_PROGRAM, functions: [] }
+
+  if (tokens[state.pos].id === TOK_ERROR) {
+    errors.push({ location: tokens[state.pos].location, message: 'scanner error token' })
+    state.pos += 2
+    return { ast, state, errors }
+  }
+
+  while (state.pos < tokens.length && tokens[state.pos].id === TOK_KEYWORD && tokens[state.pos].value === 'fn') {
+    const fnRet = parseFunction(tokens, state)
+    ast.functions.push(fnRet.ast)
+    errors.push(...fnRet.errors)
+    state = fnRet.state
+  }
+
+  state.pos++
+  return { ast, state, errors }
+}
+
+export function parse(text) {
+  const tokens = scanAll(text)
+  if (tokens.length === 0) {
+    return null
+  }
+
+  const state = { pos: 0 }
+  return parseProgram(tokens, state)
+}
+
 // Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
 if (import.meta.main) {
-  console.log('This module is not meant to be run directly.')
+  const text = 'fn main() {\n}'
+  const ret = parse(text)
+  console.log(ret)
 }

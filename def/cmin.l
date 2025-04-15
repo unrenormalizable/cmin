@@ -1,27 +1,39 @@
-%option noyywrap
-
 %{
-#include <stdio.h>
-
-#define YY_DECL int yylex()
-
-#include "calc.tab.h"
-
+#include <string>
+#include <io.h>
+#include "node.h"
+#include "cmin-parser.hpp"
+#define YY_NO_UNISTD_H 1
+#define fileno _fileno
+#define isatty _isatty
+#define SAVE_TOKEN yylval.string = new std::string(yytext, yyleng)
+#define TOKEN(t) (yylval.token = t)
+extern "C" int yywrap() { return 0; }
 %}
 
 %%
 
-[ \t]	; // ignore all whitespace
-[0-9]+\.[0-9]+ 	{yylval.fval = atof(yytext); return T_FLOAT;}
-[0-9]+		{yylval.ival = atoi(yytext); return T_INT;}
-\n		{return T_NEWLINE;}
-"+"		{return T_PLUS;}
-"-"		{return T_MINUS;}
-"*"		{return T_MULTIPLY;}
-"/"		{return T_DIVIDE;}
-"("		{return T_LEFT;}
-")"		{return T_RIGHT;}
-"exit"		{return T_QUIT;}
-"quit"		{return T_QUIT;}
+[ \t\n]                 ;
+[a-zA-Z_][a-zA-Z0-9_]*  SAVE_TOKEN; return TIDENTIFIER;
+[0-9]+.[0-9]*           SAVE_TOKEN; return TDOUBLE;
+[0-9]+                  SAVE_TOKEN; return TINTEGER;
+"="                     return TOKEN(TEQUAL);
+"=="                    return TOKEN(TCEQ);
+"!="                    return TOKEN(TCNE);
+"<"                     return TOKEN(TCLT);
+"<="                    return TOKEN(TCLE);
+">"                     return TOKEN(TCGT);
+">="                    return TOKEN(TCGE);
+"("                     return TOKEN(TLPAREN);
+")"                     return TOKEN(TRPAREN);
+"{"                     return TOKEN(TLBRACE);
+"}"                     return TOKEN(TRBRACE);
+"."                     return TOKEN(TDOT);
+","                     return TOKEN(TCOMMA);
+"+"                     return TOKEN(TPLUS);
+"-"                     return TOKEN(TMINUS);
+"*"                     return TOKEN(TMUL);
+"/"                     return TOKEN(TDIV);
+.                       printf("Unknown token!n"); yyterminate();
 
 %%

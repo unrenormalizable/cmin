@@ -16,7 +16,6 @@ jobs:
       matrix:
         os:
           - windows-latest
-          - ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout sources

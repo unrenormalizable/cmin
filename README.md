@@ -49,3 +49,4 @@ to build a compiler that is sufficiently powerful compiles itself.
 - [jack crenshaw: let's build a compiler](https://xmonader.github.io/letsbuildacompiler-pretty/)
 - [compiler explorer](https://godbolt.org/)
 - [flex / bison tutorial](https://www.capsl.udel.edu/courses/cpeg421/2012/slides/Tutorial-Flex_Bison.pdf)
+- [godbolt](https://godbolt.org/z/xW89Toh1G)

@@ -44,6 +44,7 @@ to build a compiler that is sufficiently powerful compiles itself.
 
 ## References
 
+- [tinycompiler: inspiration on minimalism](https://github.com/ssloy/tinycompiler)
 - [curated list of awesome resources](https://github.com/aalhour/awesome-compilers)
 - [LLVM](https://mukulrathi.com/create-your-own-programming-language/llvm-ir-cpp-api-tutorial/)
 - [jack crenshaw: let's build a compiler](https://xmonader.github.io/letsbuildacompiler-pretty/)

@@ -18,7 +18,7 @@ function isWhitespace(char) {
 }
 
 function isAlphabetic(char) {
-  return char !== null && char.match(/[A-Za-z]/)
+  return char !== null && char.match(/[A-Za-z_]/)
 }
 
 function isNumeric(char) {
@@ -120,7 +120,11 @@ function parseFunction(tokens, state) {
   state = { ...state }
 
   state.pos += 9
-  return { ast: { id: AST_NODE_FUNCTION, name: 'main', statements: [] }, state, errors: [] }
+  return {
+    ast: { id: AST_NODE_FUNCTION, name: tokens[1].value, return: 'void', location: tokens[1].location, statements: [] },
+    state,
+    errors: [],
+  }
 }
 
 function parseProgram(tokens, state) {
@@ -153,6 +157,42 @@ export function parse(text) {
 
   const state = { pos: 0 }
   return parseProgram(tokens, state)
+}
+
+export function analyse(program) {
+  const warnings = []
+  const errors = []
+
+  let foundMain = false
+  for (let i = 0; i < program.ast.functions.length; i++) {
+    if (program.ast.functions[i].name === '__puts') {
+      warnings.push({ location: program.ast.functions[i].location, message: 'missing main function' })
+    }
+    if (program.ast.functions[i].name === 'main') {
+      foundMain = true
+    }
+  }
+  if (!foundMain) {
+    errors.push({ location: { line: 0, column: 0 }, message: 'missing main function' })
+  }
+
+  return { warnings, errors }
+}
+
+export function emit(program) {
+  const warnings = []
+  const errors = []
+
+  let output = 'source_filename = "__todo__.cmin"\n\n'
+
+  for (let i = 0; i < program.ast.functions.length; i++) {
+    const fn = program.ast.functions[i]
+    output += `define ${fn.return} @${fn.name}() {\n`
+    output += `  ret ${fn.return}\n`
+    output += '}\n'
+  }
+
+  return { output, warnings, errors }
 }
 
 // Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts

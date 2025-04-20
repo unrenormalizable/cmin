@@ -1,0 +1,14 @@
+export const snapshot = {};
+
+snapshot[`emit: trivial main function 1`] = `
+{
+  errors: [],
+  output: 'source_filename = "__todo__.cmin"
+
+define void @main() {
+  ret void
+}
+',
+  warnings: [],
+}
+`;

@@ -1,11 +1,11 @@
 {
   "tasks": {
-    "dev": "deno run --watch main.ts",
+    "dev": "deno run --allow-read --watch main.ts",
     "fmt:fix": "deno fmt .",
     "fmt": "deno fmt . --check",
     "lint": "deno lint .",
     "test": "deno test --allow-read .",
-    "test:updatesnapshots": "deno test --allow-read --allow-write . -- --update"
+    "test:updatesnapshots": "deno test --allow-read --allow-write=. . -- --update"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@^1.0.11",
@@ -31,14 +31,12 @@
         "guard-for-in",
         "no-await-in-loop",
         "no-const-assign",
-        "no-external-import",
         "no-non-null-asserted-optional-chain",
         "no-non-null-assertion",
         "no-self-compare",
         "no-sparse-arrays",
         "no-sync-fn-in-async-fn",
         "no-throw-literal",
-        "no-top-level-await",
         "no-undef",
         "no-useless-rename",
         "prefer-ascii",

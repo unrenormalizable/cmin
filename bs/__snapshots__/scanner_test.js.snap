@@ -1,0 +1,179 @@
+export const snapshot = {};
+
+snapshot[`scan: empty file 1`] = `
+[
+  {
+    id: 1,
+    location: {
+      column: 1,
+      line: 1,
+      pos: 0,
+    },
+    value: null,
+  },
+]
+`;
+
+snapshot[`scan: random error token 1`] = `
+[
+  {
+    id: 0,
+    location: {
+      column: 1,
+      line: 2,
+      pos: 4,
+    },
+    value: null,
+  },
+]
+`;
+
+snapshot[`scan: empty file with whitespace 1`] = `
+[
+  {
+    id: 1,
+    location: {
+      column: 3,
+      line: 4,
+      pos: 14,
+    },
+    value: null,
+  },
+]
+`;
+
+snapshot[`scan: trivial main function 1`] = `
+[
+  {
+    id: 3,
+    location: {
+      column: 1,
+      line: 1,
+      pos: 0,
+    },
+    value: "fn",
+  },
+  {
+    id: 4,
+    location: {
+      column: 4,
+      line: 1,
+      pos: 3,
+    },
+    value: "main",
+  },
+  {
+    id: 4,
+    location: {
+      column: 8,
+      line: 1,
+      pos: 7,
+    },
+    value: "(",
+  },
+  {
+    id: 4,
+    location: {
+      column: 9,
+      line: 1,
+      pos: 8,
+    },
+    value: ")",
+  },
+  {
+    id: 4,
+    location: {
+      column: 11,
+      line: 1,
+      pos: 10,
+    },
+    value: "{",
+  },
+  {
+    id: 4,
+    location: {
+      column: 1,
+      line: 2,
+      pos: 12,
+    },
+    value: "}",
+  },
+  {
+    id: 1,
+    location: {
+      column: 2,
+      line: 2,
+      pos: 13,
+    },
+    value: null,
+  },
+]
+`;
+
+snapshot[`incremental scanner 1`] = `
+[
+  {
+    id: 3,
+    location: {
+      column: 1,
+      line: 1,
+      pos: 0,
+    },
+    value: "fn",
+  },
+  {
+    id: 4,
+    location: {
+      column: 4,
+      line: 1,
+      pos: 3,
+    },
+    value: "main",
+  },
+  {
+    id: 4,
+    location: {
+      column: 8,
+      line: 1,
+      pos: 7,
+    },
+    value: "(",
+  },
+  {
+    id: 4,
+    location: {
+      column: 9,
+      line: 1,
+      pos: 8,
+    },
+    value: ")",
+  },
+  {
+    id: 4,
+    location: {
+      column: 11,
+      line: 1,
+      pos: 10,
+    },
+    value: "{",
+  },
+  {
+    id: 4,
+    location: {
+      column: 1,
+      line: 2,
+      pos: 12,
+    },
+    value: "}",
+  },
+  {
+    id: 1,
+    location: {
+      column: 2,
+      line: 2,
+      pos: 13,
+    },
+    value: null,
+  },
+]
+`;

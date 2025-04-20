@@ -1,0 +1,9 @@
+Program -> FunctionList
+
+FunctionList -> Function FunctionList
+FunctionList -> ''
+Function -> 'fn' id '(' ')' Block
+
+Block -> '{' Statements '}'
+
+Statements -> ''

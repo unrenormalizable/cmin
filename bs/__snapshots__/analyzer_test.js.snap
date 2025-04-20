@@ -1,0 +1,29 @@
+export const snapshot = {};
+
+snapshot[`analyze: override puts function 1`] = `
+{
+  errors: [
+    {
+      location: {
+        column: 0,
+        line: 0,
+      },
+      message: "missing main function",
+    },
+  ],
+  warnings: [
+    {
+      message: "redefining C imports.",
+      token: {
+        id: 4,
+        location: {
+          column: 4,
+          line: 1,
+          pos: 3,
+        },
+        value: "__puts",
+      },
+    },
+  ],
+}
+`;

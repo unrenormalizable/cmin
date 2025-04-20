@@ -1,0 +1,189 @@
+export const snapshot = {};
+
+snapshot[`parse: empty file 1`] = `
+{
+  ast: {
+    functions: [],
+    id: 0,
+  },
+  result: 0,
+  scanState: {
+    state: {
+      column: 1,
+      line: 1,
+      pos: 0,
+    },
+    token: {
+      id: 1,
+      location: {
+        column: 1,
+        line: 1,
+        pos: 0,
+      },
+      value: null,
+    },
+  },
+  text: "",
+}
+`;
+
+snapshot[`parse: empty file with whitespace 1`] = `
+{
+  ast: {
+    functions: [],
+    id: 0,
+  },
+  result: 0,
+  scanState: {
+    state: {
+      column: 3,
+      line: 4,
+      pos: 14,
+    },
+    token: {
+      id: 1,
+      location: {
+        column: 3,
+        line: 4,
+        pos: 14,
+      },
+      value: null,
+    },
+  },
+  text: "   \\r	  \\r
+  
+  ",
+}
+`;
+
+snapshot[`parse: random scanner error 1`] = `
+{
+  ast: {
+    functions: [],
+    id: 0,
+  },
+  result: 2,
+  scanState: {
+    state: {
+      column: 1,
+      line: 2,
+      pos: 4,
+    },
+    token: {
+      id: 0,
+      location: {
+        column: 1,
+        line: 2,
+        pos: 4,
+      },
+      value: null,
+    },
+  },
+  text: "   \\r#  \\r
+  
+  ",
+}
+`;
+
+snapshot[`parse: trivial main function 1`] = `
+{
+  ast: {
+    functions: [
+      {
+        id: 0,
+        name: "main",
+        return: "void",
+        statements: [],
+        token: {
+          id: 4,
+          location: {
+            column: 4,
+            line: 1,
+            pos: 3,
+          },
+          value: "main",
+        },
+      },
+    ],
+    id: 0,
+  },
+  result: 0,
+  scanState: {
+    state: {
+      column: 2,
+      line: 2,
+      pos: 13,
+    },
+    token: {
+      id: 1,
+      location: {
+        column: 2,
+        line: 2,
+        pos: 13,
+      },
+      value: null,
+    },
+  },
+  text: "fn main() {
+}",
+}
+`;
+
+snapshot[`parse: multiple functions 1`] = `
+{
+  ast: {
+    functions: [
+      {
+        id: 0,
+        name: "main",
+        return: "void",
+        statements: [],
+        token: {
+          id: 4,
+          location: {
+            column: 4,
+            line: 1,
+            pos: 3,
+          },
+          value: "main",
+        },
+      },
+      {
+        id: 0,
+        name: "__puts",
+        return: "void",
+        statements: [],
+        token: {
+          id: 4,
+          location: {
+            column: 5,
+            line: 2,
+            pos: 16,
+          },
+          value: "__puts",
+        },
+      },
+    ],
+    id: 0,
+  },
+  result: 0,
+  scanState: {
+    state: {
+      column: 16,
+      line: 2,
+      pos: 27,
+    },
+    token: {
+      id: 1,
+      location: {
+        column: 16,
+        line: 2,
+        pos: 27,
+      },
+      value: null,
+    },
+  },
+  text: "fn main() {
+}fn __puts() {}",
+}
+`;
